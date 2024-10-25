@@ -27,7 +27,7 @@ function App() {
               role: "user",
               parts: [
                 {
-                  text: `${prompt}. Jangan lupa gunakan bahasa yang mudah dimengerti untuk orang awam`,
+                  text: `${prompt}. Jawab menggunakan bahasa yang mudah dimengerti untuk orang awam`,
                 },
               ], // Gunakan state prompt
             },
@@ -58,7 +58,7 @@ function App() {
       <div className="content w-full h-full border-1 border-black">
         <form
           onSubmit={handleSubmit}
-          className="w-full h-full flex flex-col justify-center px-10"
+          className="w-full h-full overflow-x-hidden flex flex-col justify-center px-10"
         >
           <div>
             <h2 className="p-1 py-3">Masukkan Prompt anda</h2>
