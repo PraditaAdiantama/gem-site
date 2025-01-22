@@ -1,3 +1,3 @@
 # Askbot by using GeminiAI
 
-Just trying learning AI thing✨🤖
+Trying learning AI thing✨🤖
