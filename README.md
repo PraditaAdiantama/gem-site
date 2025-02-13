@@ -1,3 +1,2 @@
-# Askbot by using GeminiAI
-
-Trying learning AI thing✨🤖
+# GemSite
+Site for Gemini Ai api
