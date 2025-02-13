@@ -59,7 +59,7 @@ function App() {
           ></textarea>
           <div className="flex justify-end">
             <button
-              disabled={!prompt || load}
+              disabled={load}
               className="px-4 py-2 rounded-xl disabled:bg-slate-500 bg-blue-500"
             >
               Kirim
