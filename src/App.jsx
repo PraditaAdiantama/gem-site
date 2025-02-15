@@ -63,7 +63,7 @@ function App() {
         ) : (
           <div className="w-full flex flex-col gap-4">
             {messages?.map((message) => (
-              <div className="odd:p-3 odd:bg-slate-800 odd:rounded-xl odd:ms-auto w-fit text-white">
+              <div className="odd:p-3 odd:bg-slate-800 odd:rounded-xl odd:ms-auto even:max-w-full w-fit text-white">
                 <ReactMarkdown>{message}</ReactMarkdown>
               </div>
             ))}
