@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Gemini from "./composable/gemini";
 import ReactMarkdown from "react-markdown";
+import './assets/css/highlight.css'
 
 function App() {
   const inputRef = useRef(null);
@@ -32,7 +33,6 @@ function App() {
       let responseText = "";
 
       for await (const chunk of result.stream) {
-        console.log(chunk.text());
         responseText += chunk.text();
         setMessages((prev) => {
           const arr = [...prev];
@@ -63,7 +63,7 @@ function App() {
         ) : (
           <div className="w-full flex flex-col gap-4">
             {messages?.map((message) => (
-              <div className="odd:p-3 odd:bg-slate-800 odd:rounded-xl odd:ms-auto w-fit text-white">
+              <div className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto w-fit text-white last:mb-10">
                 <ReactMarkdown>{message}</ReactMarkdown>
               </div>
             ))}
@@ -72,7 +72,7 @@ function App() {
         <form
           id="form"
           onSubmit={handleSubmit}
-          className="bg-[#404045] w-full max-md:mx-5 rounded-2xl mt-5 p-4 h-fit md:max-w-3xl mx-auto sticky bottom-9 "
+          className="bg-[#404045] w-full max-md:mx-5 rounded-2xl mt-5 px-4 py-3 h-fit md:max-w-3xl mx-auto sticky bottom-9 "
         >
           <textarea
             placeholder="Ask Gembro"
