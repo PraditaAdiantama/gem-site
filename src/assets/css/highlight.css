@@ -1,0 +1,33 @@
+pre {
+  max-width: 100%;
+  margin: 10px 0;
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  background-color: #404045;
+}
+
+pre:has(> .language-python)::before {
+  content: "python";
+  display: block;
+  padding: 0.8rem 1rem;
+  font-size: 12px;
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 1rem;
+  border-radius: 0;
+  background-color: black;
+}
+
+code {
+  background-color: #404045;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+p:has(> strong){
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}

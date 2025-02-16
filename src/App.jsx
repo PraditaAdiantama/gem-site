@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Gemini from "./composable/gemini";
 import ReactMarkdown from "react-markdown";
-import './assets/css/highlight.css'
+import "./assets/css/highlight.css";
 
 function App() {
   const inputRef = useRef(null);
@@ -13,12 +13,10 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-
-    const prompt = formData.get("prompt");
+    const value = prompt;
 
     setLoad(true);
-    setMessages((prev) => [...prev, prompt]);
+    setMessages((prev) => [...prev, value]);
     document.getElementById("form").reset();
     setPrompt("");
     if (inputRef.current) {
@@ -27,7 +25,7 @@ function App() {
 
     try {
       const gemini = Gemini();
-      const result = await gemini.sendMessageStream(prompt);
+      const result = await gemini.sendMessageStream(value);
 
       setMessages((prev) => [...prev, ""]);
       let responseText = "";
@@ -50,7 +48,7 @@ function App() {
     <div className="w-full min-h-screen overflow-visible">
       <div
         className={
-          "md:max-w-3xl mx-auto flex flex-col items-center gap-5 pt-5 transition " +
+          "md:max-w-3xl md:mx-auto mx-4 flex flex-col items-center gap-5 pt-5 transition " +
           (messages.length > 0
             ? "justify-between min-h-screen"
             : "justify-center h-screen")
@@ -63,8 +61,16 @@ function App() {
         ) : (
           <div className="w-full flex flex-col gap-4">
             {messages?.map((message) => (
-              <div className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto w-fit text-white last:mb-10">
-                <ReactMarkdown>{message}</ReactMarkdown>
+              <div className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto w-fit even:max-w-full text-white last:mb-10 break-words">
+                <ReactMarkdown
+                  components={{
+                    pre(props) {
+                      return <div><pre>{props.children}</pre></div>;
+                    },
+                  }}
+                >
+                  {message}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
@@ -72,16 +78,15 @@ function App() {
         <form
           id="form"
           onSubmit={handleSubmit}
-          className="bg-[#404045] w-full max-md:mx-5 rounded-2xl mt-5 px-4 py-3 h-fit md:max-w-3xl mx-auto sticky bottom-9 "
+          className="bg-[#404045] w-full rounded-2xl mt-5 px-4 py-3 h-fit md:max-w-3xl mx-auto sticky bottom-9 "
         >
           <textarea
             placeholder="Ask Gembro"
             name="prompt"
             className={
-              "w-full text-white absolute resize-none -z-10 " +
+              "text-white absolute resize-none -z-10 " +
               (prompt.trim() != "" ? "hidden" : "")
             }
-            value={prompt}
           ></textarea>
           <div
             contentEditable={true}
