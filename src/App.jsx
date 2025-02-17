@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Gemini from "./composable/gemini";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 import "./assets/css/highlight.css";
 
 function App() {
@@ -8,6 +9,8 @@ function App() {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([]);
   const [load, setLoad] = useState(false);
+
+  const gemini = Gemini();
 
   // Menghitung submit
   async function handleSubmit(e) {
@@ -24,7 +27,6 @@ function App() {
     }
 
     try {
-      const gemini = Gemini();
       const result = await gemini.sendMessageStream(value);
 
       setMessages((prev) => [...prev, ""]);
@@ -32,6 +34,7 @@ function App() {
 
       for await (const chunk of result.stream) {
         responseText += chunk.text();
+	      console.log(chunk.text())
         setMessages((prev) => {
           const arr = [...prev];
           arr[arr.length - 1] = responseText;
@@ -59,13 +62,21 @@ function App() {
             Hi, Welcome To Gemsite
           </h3>
         ) : (
-          <div className="w-full flex flex-col gap-4">
-            {messages?.map((message) => (
-              <div className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto w-fit even:max-w-full text-white last:mb-10 break-words">
+          <div className="w-full flex flex-col gap-5">
+            {messages?.map((message, i) => (
+              <div key={i} className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto odd:md:max-w-1/2 w-fit even:max-w-full text-white last:mb-10 break-words prose">
                 <ReactMarkdown
+                  rehypePlugins={[rehypeHighlight]}
                   components={{
                     pre(props) {
-                      return <div><pre>{props.children}</pre></div>;
+                      return (
+                        <div>
+                          <pre>
+                            <div className="h-10 bg-[#404045] rounded-t-xl"></div>
+                            {props.children}
+                          </pre>
+                        </div>
+                      );
                     },
                   }}
                 >
@@ -97,9 +108,16 @@ function App() {
           <div className="flex justify-end">
             <button
               disabled={load || !prompt}
-              className="px-4 py-2 rounded-xl disabled:bg-slate-500 bg-blue-500 text-white"
+              className="p-2 rounded-full disabled:bg-gray-500 bg-blue-500 text-white"
             >
-              Kirim
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.849L12 12l-7.758 2.909-1.212 4.849a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81z"></path>
+              </svg>
             </button>
           </div>
         </form>
