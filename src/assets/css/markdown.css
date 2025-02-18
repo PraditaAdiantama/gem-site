@@ -1,0 +1,116 @@
+.markdown a {
+  color: #7ab7ff;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+.markdown > ul {
+  margin: 0.5rem 0;
+  padding-inline-start: 2.5rem;
+}
+
+.markdown > ul > li {
+  list-style: disc;
+  margin: 0.5rem 0;
+}
+
+.markdown > p > strong:only-child {
+  font-size: 1.5rem;
+}
+
+.markdown .code-head {
+  position: relative;
+}
+
+.markdown .code-head:has(+ .language-python):before {
+  content: "python";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-java):before {
+  content: "java";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-c):before {
+  content: "c";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-cpp):before {
+  content: "cpp";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-javascript):before {
+  content: "js";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-csharp):before {
+  content: "c#";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-go):before {
+  content: "go";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-php):before {
+  content: "php";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-swift):before {
+  content: "swift";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-kotlin):before {
+  content: "kotlin";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-ruby):before {
+  content: "ruby";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-rust):before {
+  content: "rust";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.markdown .code-head:has(+ .language-perl):before {
+  content: "perl";
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+}

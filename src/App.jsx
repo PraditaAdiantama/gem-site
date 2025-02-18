@@ -3,6 +3,7 @@ import Gemini from "./composable/gemini";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "./assets/css/highlight.css";
+import "./assets/css/markdown.css";
 
 function App() {
   const inputRef = useRef(null);
@@ -34,7 +35,6 @@ function App() {
 
       for await (const chunk of result.stream) {
         responseText += chunk.text();
-	      console.log(chunk.text())
         setMessages((prev) => {
           const arr = [...prev];
           arr[arr.length - 1] = responseText;
@@ -64,7 +64,7 @@ function App() {
         ) : (
           <div className="w-full flex flex-col gap-5">
             {messages?.map((message, i) => (
-              <div key={i} className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto odd:md:max-w-1/2 w-fit even:max-w-full text-white last:mb-10 break-words prose">
+              <div key={i} className="odd:p-3 odd:bg-[#404045] odd:rounded-xl odd:ms-auto odd:md:max-w-1/2 w-fit even:max-w-full text-white last:mb-10 break-words markdown">
                 <ReactMarkdown
                   rehypePlugins={[rehypeHighlight]}
                   components={{
@@ -72,7 +72,7 @@ function App() {
                       return (
                         <div>
                           <pre>
-                            <div className="h-10 bg-[#404045] rounded-t-xl"></div>
+                            <div className="code-head h-10 bg-[#404045] rounded-t-xl"></div>
                             {props.children}
                           </pre>
                         </div>
